@@ -1,0 +1,53 @@
+<div class="row mt-5" style="margin: 0 auto !important; margin-top: 3rem !important;">
+  <div *ngIf='cases.length < 1' class="col-sm-10 m-auto col-lg-4 col-md-6">
+      <h3>O Cases logged</h3>
+  </div>
+  <div *ngFor='let case of cases' class="col-sm-10 col-lg-4 col-md-6">
+  <div style="cursor: pointer;" (click)="basicModal.show()"  >
+    <mdb-card class="mb-4">
+      <mdb-card-body>
+        <mdb-card-title>
+          <p>{{case?.title.length > 30? (case?.title | slice:0:30) + '...' : case?.title}}<span class="float-right bd-rad text-white" ></span></p>
+          
+        </mdb-card-title>
+        <mdb-card-text> {{case?.description.length > 40? (case?.description | slice:0:40) + '...' : case?.description}}
+        </mdb-card-text>
+        <mdb-card-text *ngIf='case.reviewedByAdmin'><strong>Admin Comment: </strong> {{case?.adminComment.length > 40? (case?.adminComment | slice:0:40) + '...' : case?.adminComment}}
+        </mdb-card-text>
+        <button *ngIf='isAdmin() && !case.reviewedByAdmin' mdbBtn color="primary" [disabled]='case.reviewedByAdmin' mdbWavesEffect>Review</button>
+        <span class="float-right bd-rad text-white" [ngClass]='case.reviewedByAdmin? "success-color-dark" : "info-color-dark"'>{{case.reviewedByAdmin? 'Treated' : 'Waiting'}}</span>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+  <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <mdb-card-title>
+            <p><strong>Title:</strong> {{case.title}}<span class="float-right bd-rad text-white" ></span></p>
+          </mdb-card-title>
+          <mdb-card-text><strong>Description:</strong> {{case?.description}}
+          </mdb-card-text>
+          <mdb-card-text *ngIf='case.reviewedByAdmin'><strong>Admin Comment: </strong>{{case?.adminComment}}
+          </mdb-card-text>
+          <br>
+          <textarea *ngIf='isAdmin() && !case.reviewedByAdmin' [disabled]='case.reviewedByAdmin' rows="4" type="text" id="comment" [(ngModel)]="adminComment" class="form-control mb-4" placeholder="Reviewer's comment"></textarea>
+          <br>
+          <span class="float-right bd-rad text-white" [ngClass]='case.reviewedByAdmin? "success-color-dark": !case.reviewedByAdmin? "info-color-dark" : "danger-color-dark"'>{{case.reviewedByAdmin? 'Treated' : 'Waiting'}}</span>
+        </div>
+        <div class="modal-footer">
+          <button *ngIf='isAdmin() && !case.reviewedByAdmin' type="button" mdbBtn color="success" class="waves-light" aria-label="Close" (click)='review(case)' mdbWavesEffect>Review</button>
+          <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close" (click)='deleteCase(case.caseId)' mdbWavesEffect>Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div style='margin-top: 20rem' *ngIf='cases.length < 12'>
+</div>

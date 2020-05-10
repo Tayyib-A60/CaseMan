@@ -1,0 +1,13 @@
+<div class="col col-sm-6 col-md-6" style="margin: 0 auto !important;">
+  <p class="h4 mb-4 mt-5 text-center">Log New Case</p>
+  <br>
+  <form class="text-center border border-light p-5" [formGroup]="caseForm" (ngSubmit)='createCase()'>
+    <input type="text" id="type" formControlName="title" class="form-control mb-4" placeholder="Title">
+    <textarea rows="8" type="text" id="description" formControlName="description" class="form-control mb-4" placeholder="Description"></textarea>
+        <button mdbBtn color="success" block="true" class="my-4" type="submit"
+        [disabled]="!caseForm.valid">Log Case</button>
+    </form>
+</div>
+<br>
+<br>
+<br> 

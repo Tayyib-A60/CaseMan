@@ -1,0 +1,28 @@
+<header>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark green fixed-top scrolling-navbar">
+  <mdb-navbar-brand><a routerLink="/user/cases" class="navbar-brand" style="margin-left:1.8rem !important;">CaseMan</a></mdb-navbar-brand>
+  <links>
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/user/register"
+              *ngIf="!isAuthenticated()">Register</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/user/login"
+              *ngIf="!isAuthenticated()">Login</a>
+          </li>
+          <li *ngIf='isUser()' class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/user/create-case"
+              >Log New Case</a>
+          </li>
+          <li *ngIf='isAuthenticated()' class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" mdbWavesEffect (click)='logout()'>Logout</a>
+          </li>
+          <li *ngIf='isAuthenticated()' class="nav-item" routerLinkActive="active">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/user/cases"
+              >Cases</a>
+          </li>
+         </ul>
+  </links>
+</mdb-navbar>
+</header>
