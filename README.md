@@ -24,3 +24,4 @@
 # First Steps
     - run npm i from the Client directory
     - run ng serve (default port is 4200) <optionally run ng serve --port $PORT (e.g 3000)>
+![](CaseManGif.gif?raw=true)
