@@ -27,11 +27,13 @@ namespace CaseMan.Migrations
 
                     b.Property<string>("AdminComment");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<bool>("ReviewedByAdmin");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.Property<int>("UserId");
 

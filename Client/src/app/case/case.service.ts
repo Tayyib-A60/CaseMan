@@ -43,8 +43,12 @@ token: string;
         );
     }
     
-    reviewCase(userId: number, customerCase: Case) {
-        this.token = sessionStorage.getItem('currentUser')? JSON.parse(sessionStorage.getItem('currentUser')).token : null;
+    reviewCase(customerCase: Case) {
+        const user = JSON.parse(sessionStorage.getItem('currentUser'));
+
+        this.token = user? user['token'] : null;
+        const userId =  user? user['id'] : null;
+
         const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${this.token}` });
         return this.http.post(`${this.url}caseman/reviewCase/${userId}`, customerCase, { headers })
         .pipe(

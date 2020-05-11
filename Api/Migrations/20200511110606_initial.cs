@@ -33,9 +33,8 @@ namespace CaseMan.Migrations
                     CaseId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
-                    Summary = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    EstimatedTime = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
                     ReviewedByAdmin = table.Column<bool>(nullable: false),
                     AdminComment = table.Column<string>(nullable: true)
                 },

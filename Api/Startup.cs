@@ -16,6 +16,7 @@ using System.Reflection;
 using System.IO;
 using System;
 using Swashbuckle.AspNetCore.Filters;
+using System.Collections.Generic;
 
 namespace Api
 {
@@ -37,6 +38,29 @@ namespace Api
             services.AddSwaggerGen(x => 
             {
                 x.SwaggerDoc("v1", new OpenApiInfo{Title= "CaseManagement API", Version = "v1" });
+
+                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using bearer scheme",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                });
+
+                x.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Id = "Bearer",
+                                Type = ReferenceType.SecurityScheme
+
+                            }
+                        }, new List<string>()
+                    }
+                });
 
                 x.ExampleFilters();
 

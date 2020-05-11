@@ -49,7 +49,7 @@ export class CaseEffects {
         ofType(caseActions.CaseActionTypes.ReviewCase),
         map((action: caseActions.ReviewCase) => (action.payload)),
         mergeMap((customerCase: Case) =>
-          this.caseService.reviewCase(this.adminId, customerCase).pipe(
+          this.caseService.reviewCase(customerCase).pipe(
             map((customerCase: Case) => {
               this.notifier.notify('success','Case Review successful');
               this.router.navigate(['user/cases']);

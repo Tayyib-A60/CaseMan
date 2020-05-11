@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CaseMan.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200509161921_initial")]
+    [Migration("20200511110606_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,13 +29,13 @@ namespace CaseMan.Migrations
 
                     b.Property<string>("AdminComment");
 
-                    b.Property<string>("Description");
-
-                    b.Property<int>("EstimatedTime");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<bool>("ReviewedByAdmin");
 
-                    b.Property<string>("Summary");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.Property<int>("UserId");
 

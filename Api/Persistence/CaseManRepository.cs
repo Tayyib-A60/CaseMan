@@ -30,7 +30,7 @@ namespace Api.Persistence
             }
             return customerCase;
         }
-        public async Task<IEnumerable<Case>> GetCases(bool isAdmin, int userId)
+        public async Task<List<Case>> GetCases(bool isAdmin, int userId)
         {
             if(isAdmin) {
                 return await _context.Cases.ToListAsync();

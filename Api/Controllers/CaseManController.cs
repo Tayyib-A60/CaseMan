@@ -9,6 +9,7 @@ using Api.Controllers.DTOs;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using System.Collections.Generic;
 
 namespace Api.Controllers
 {
@@ -87,6 +88,7 @@ namespace Api.Controllers
         /// <response code="400">Unable to retrieve case due to validation error</response>
         /// <response code="401">Unauthorized access</response>
         [HttpGet("getCase/{userId}/{caseId}")]
+        [ProducesResponseType(typeof(Case), 200)]
         public async Task<IActionResult> GetCase(int userId, int caseId)
         {
             if ((userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))) {
@@ -111,6 +113,7 @@ namespace Api.Controllers
         /// <response code="400">Unable to retrieve cases due to validation error</response>
         /// <response code="401">Unauthorized access</response>
         [HttpGet("getCases/{userId}")]
+        [ProducesResponseType(typeof(List<Case>), 200)]
         public async Task<IActionResult> GetCases(int userId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {

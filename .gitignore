@@ -3,3 +3,4 @@ Api/bin
 Api/obj
 
 Client/node_modules
+Client/package-lock.json

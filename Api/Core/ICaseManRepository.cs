@@ -10,7 +10,7 @@ namespace Api.Core
         void Remove<T>(T entity) where T: class;
         void Update<T>(T entity) where T: class;
         Task<Case> GetCase(bool isAdmin, int userId, int caseId);
-        Task<IEnumerable<Case>> GetCases(bool isAdmin, int userId);
+        Task<List<Case>> GetCases(bool isAdmin, int userId);
         Task<bool> SaveAllChanges();
     }
 }
